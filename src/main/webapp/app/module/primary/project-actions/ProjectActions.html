@@ -1,0 +1,30 @@
+<div class="jhipster-side-form--actions">
+  <div class="jhlite-vertical-space -paragraph">
+    <slot />
+
+    <div class="jhlite-vertical-space--line">
+      <button
+        tabindex="5"
+        class="jhlite-button -block"
+        @click="formatProject()"
+        :disabled="disabledPrettier()"
+        data-selector="format-button"
+      >
+        <IconVue name="code" aria-label="Icon code" />
+        Format
+      </button>
+    </div>
+    <div class="jhlite-vertical-space--line">
+      <button
+        tabindex="5"
+        class="jhlite-button -block"
+        @click="downloadProject()"
+        :disabled="disabledActions()"
+        data-selector="download-button"
+      >
+        <IconVue name="download" aria-label="Icon download" />
+        Download
+      </button>
+    </div>
+  </div>
+</div>

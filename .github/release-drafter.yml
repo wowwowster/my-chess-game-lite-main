@@ -1,0 +1,51 @@
+template: |
+  ## Release Notes
+
+  $CHANGES
+
+exclude-contributors:
+  - 'dependabot'
+  - 'dependabot[bot]'
+  - 'github-actions[bot]'
+change-template: '- $TITLE - [#$NUMBER]($URL) by @$AUTHOR'
+categories:
+  - title: ⭐ Important fixes and improvements
+    labels:
+      - 'theme: important'
+  - title: 💎 Features
+    labels:
+      - 'area: feature request :bulb:'
+  - title: 🔧 Enhancements
+    labels:
+      - 'area: enhancement :wrench:'
+  - title: 🔨 Refactoring
+    labels:
+      - 'area: refactoring'
+  - title: 🐞 Bug Fixes
+    labels:
+      - 'area: bug :bug:'
+  - title: 🖥️ Frontend
+    labels:
+      - 'client: angular'
+      - 'client: react'
+      - 'client: vue'
+  - title: 🍃 Spring Boot
+    labels:
+      - 'server: spring boot'
+  - title: 🔒 Security
+    labels:
+      - 'theme: security'
+  - title: 🪶 Maven
+    labels:
+      - 'theme: maven'
+  - title: 🐘 Gradle
+    labels:
+      - 'theme: gradle'
+  - title: 📝 Documentation
+    label: 'area: documentation:books:'
+  - title: 📦 Dependency updates
+    label: 'area: dependencies'
+  - title: 💩 Spam/Invalid
+    labels:
+      - 'area: spam'
+      - 'area: invalid'

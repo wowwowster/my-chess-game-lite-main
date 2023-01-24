@@ -1,0 +1,19 @@
+{
+  "name": "jhlite",
+  "version": "0.0.1",
+  "description": "Jhipster lite",
+  "scripts": {
+    "prettier:check": "prettier --check \"{,src/**/}*.{md,json,yml,html,js,ts,tsx,css,scss,vue,java,xml}\"",
+    "prettier:format": "prettier --write \"{,src/**/}*.{md,json,yml,html,js,ts,tsx,css,scss,vue,java,xml}\""
+  },
+  "dependencies": {
+    "prettier": "2.5.1"
+  },
+  "devDependencies": {
+    "prettier": "2.5.1"
+  },
+  "engines": {
+    "node": ">=14.18.1"
+  },
+  "cacheDirectories": ["node_modules"]
+}

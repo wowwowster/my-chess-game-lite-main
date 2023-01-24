@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.0.1</version>
+  </parent>
+
+  <groupId>tech.jhipster.lite</groupId>
+  <artifactId>jhlite</artifactId>
+  <version>0.26.1-SNAPSHOT</version>
+  <name>jhlite</name>
+  <description>JHipster Lite</description>
+  <packaging>jar</packaging>
+  <url>https://github.com/jhipster/jhipster-lite</url>
+  <licenses>
+    <license>
+      <name>Apache License, version 2.0</name>
+      <url>https://github.com/jhipster/jhipster-lite/blob/main/LICENSE.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>JHipster</name>
+    <url>https://www.jhipster.tech</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>pascalgrimaud</id>
+      <name>Pascal Grimaud</name>
+      <url>https://github.com/pascalgrimaud</url>
+      <organization>JHipster</organization>
+      <organizationUrl>https://www.jhipster.tech/</organizationUrl>
+    </developer>
+    <!-- The JHipster core team is listed at https://www.jhipster.tech/team/ -->
+  </developers>
+  <scm>
+    <connection>scm:git:https://github.com/jhipster/jhipster-lite</connection>
+    <url>https://github.com/jhipster/jhipster-lite</url>
+  </scm>
+
+  <properties>
+    <java.version>17</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <node.version>v18.12.1</node.version>
+    <npm.version>8.19.2</npm.version>
+
+    <maven.version>3.6.0</maven.version>
+    <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
+    <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+    <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+    <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
+    <start-class>tech.jhipster.lite.JHLiteApp</start-class>
+
+    <byte-buddy.version>1.12.22</byte-buddy.version>
+    <compiler-plugin.version>3.10.1</compiler-plugin.version>
+    <surefire-plugin.version>3.0.0-M8</surefire-plugin.version>
+    <jacoco.version>0.8.8</jacoco.version>
+    <jgit.version>6.4.0.202211300538-r</jgit.version>
+    <archunit-junit5.version>1.0.1</archunit-junit5.version>
+    <springdoc-openapi-starter-webmvc-ui.version>2.0.2</springdoc-openapi-starter-webmvc-ui.version>
+    <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
+    <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
+    <apache-commons-io.version>2.11.0</apache-commons-io.version>
+    <cucumber.version>7.11.0</cucumber.version>
+    <testng.version>7.7.1</testng.version>
+    <maven-model.version>3.8.7</maven-model.version>
+    <joox.version>2.0.0</joox.version>
+    <dom4j.version>2.1.3</dom4j.version>
+    <night-config.version>3.6.6</night-config.version>
+    <testcontainers.version>1.17.6</testcontainers.version>
+    <mongock.version>5.2.2</mongock.version>
+    <git-commit-id-plugin.version>5.0.0</git-commit-id-plugin.version>
+
+    <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
+    <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
+    <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.mongock</groupId>
+        <artifactId>mongock-bom</artifactId>
+        <version>${mongock.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${project.parent.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${apache-commons-io.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>${jgit.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+      <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+      <version>${maven-model.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>joox</artifactId>
+      <version>${joox.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>${dom4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.electronwill.night-config</groupId>
+      <artifactId>toml</artifactId>
+      <version>${night-config.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.mongock</groupId>
+      <artifactId>mongock-springboot-v3</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.mongock</groupId>
+      <artifactId>mongodb-springdata-v4-driver</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+      <version>${byte-buddy.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5-api</artifactId>
+      <version>${archunit-junit5.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-spring</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>mongodb</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>spring-boot:run</defaultGoal>
+
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>config/*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <excludes>
+          <exclude>config/*.properties</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler-plugin.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <compilerArgs>
+            <arg>-parameters</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire-plugin.version}</version>
+        <configuration>
+          <!-- Force alphabetical order to have a reproducible build -->
+          <runOrder>alphabetical</runOrder>
+          <excludes>
+            <exclude>**/*IT*</exclude>
+            <exclude>**/*IntTest*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <configuration>
+          <excludes>
+            <exclude>**/generator/buildtool/maven/.mvn/wrapper/*</exclude>
+            <exclude>src/main/webapp/app/common/primary/applicationlistener/WindowApplicationListener.ts</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${surefire-plugin.version}</version>
+        <configuration>
+          <!-- Due to spring-boot repackage, without adding this property test classes are not found
+               See https://github.com/spring-projects/spring-boot/issues/6254 -->
+          <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+          <!-- Force alphabetical order to have a reproducible build -->
+          <runOrder>alphabetical</runOrder>
+          <includes>
+            <include>**/*IT*</include>
+            <include>**/*IntTest*</include>
+          </includes>
+        </configuration>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>verify</id>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>${properties-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>sonar-project.properties</file>
+              </files>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>net.nicoulaj.maven.plugins</groupId>
+        <artifactId>checksum-maven-plugin</artifactId>
+        <version>${checksum-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>create-pre-compiled-webapp-checksum</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>files</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>create-compiled-webapp-checksum</id>
+            <goals>
+              <goal>files</goal>
+            </goals>
+            <phase>compile</phase>
+            <configuration>
+              <csvSummaryFile>checksums.csv.old</csvSummaryFile>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <fileSets>
+            <fileSet>
+              <directory>${project.basedir}</directory>
+              <includes>
+                <include>src/main/glyph/**/*.*</include>
+                <include>src/main/style/**/*.*</include>
+                <include>src/main/webapp/**/*.*</include>
+                <include>target/classes/public/**/*.*</include>
+                <include>target/classes/static/**/*.*</include>
+                <include>package-lock.json</include>
+                <include>package.json</include>
+                <include>tsconfig.json</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+          <failOnError>false</failOnError>
+          <failIfNoFiles>false</failIfNoFiles>
+          <individualFiles>false</individualFiles>
+          <algorithms>
+            <algorithm>SHA-1</algorithm>
+          </algorithms>
+          <includeRelativePath>true</includeRelativePath>
+          <quiet>true</quiet>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>${maven-antrun-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>eval-frontend-checksum</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <condition property="skip.npm" value="true" else="false">
+                  <and>
+                    <available file="checksums.csv" filepath="${project.build.directory}" />
+                    <available file="checksums.csv.old" filepath="${project.build.directory}" />
+                    <filesmatch file1="${project.build.directory}/checksums.csv" file2="${project.build.directory}/checksums.csv.old" />
+                  </and>
+                </condition>
+              </target>
+              <exportAntProperties>true</exportAntProperties>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>${frontend-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>install-node-and-npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>${node.version}</nodeVersion>
+              <npmVersion>${npm.version}</npmVersion>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>build front</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <arguments>run build</arguments>
+              <environmentVariables>
+                <APP_VERSION>${project.version}</APP_VERSION>
+              </environmentVariables>
+              <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
+            </configuration>
+          </execution>
+          <execution>
+            <id>front test</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>test</phase>
+            <configuration>
+              <arguments>run test</arguments>
+              <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <quiet>true</quiet>
+          <failOnWarnings>false</failOnWarnings>
+          <failOnError>false</failOnError>
+          <doclint>all,-missing</doclint>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <sourceFileExcludes>package-info.java</sourceFileExcludes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${maven-source-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>io.github.git-commit-id</groupId>
+          <artifactId>git-commit-id-maven-plugin</artifactId>
+          <version>${git-commit-id-plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>revision</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <failOnNoGitDirectory>false</failOnNoGitDirectory>
+            <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+            <includeOnlyProperties>
+              <includeOnlyProperty>^git.commit.id.abbrev$</includeOnlyProperty>
+              <includeOnlyProperty>^git.commit.id.describe$</includeOnlyProperty>
+              <includeOnlyProperty>^git.branch$</includeOnlyProperty>
+            </includeOnlyProperties>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.version}</version>
+          <executions>
+            <execution>
+              <id>pre-unit-tests</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
+            <execution>
+              <id>post-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>pre-integration-tests</id>
+              <goals>
+                <goal>prepare-agent-integration</goal>
+              </goals>
+            </execution>
+            <!-- Ensures that the code coverage report for integration tests is created after integration tests have been run -->
+            <execution>
+              <id>post-integration-tests</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>report-integration</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>merge</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>merge</goal>
+              </goals>
+              <configuration>
+                <fileSets>
+                  <fileSet implementation="org.apache.maven.shared.model.fileset.FileSet">
+                    <directory>${project.basedir}</directory>
+                    <includes>
+                      <include>**/*.exec</include>
+                    </includes>
+                  </fileSet>
+                </fileSets>
+                <destFile>target/jacoco/allTest.exec</destFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>post-merge-report</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <configuration>
+                <dataFile>target/jacoco/allTest.exec</dataFile>
+                <outputDirectory>target/jacoco/</outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven-enforcer-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>enforce-versions</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>enforce-dependencyConvergence</id>
+              <configuration>
+                <rules>
+                  <DependencyConvergence />
+                </rules>
+                <fail>false</fail>
+              </configuration>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <rules>
+              <requireMavenVersion>
+                <message>You are running an older version of Maven. JHipster requires at least Maven ${maven.version}</message>
+                <version>[${maven.version},)</version>
+              </requireMavenVersion>
+              <requireJavaVersion>
+                <message>You are running an incompatible version of Java. JHipster supports JDK 17.</message>
+                <version>[17,18)</version>
+              </requireJavaVersion>
+            </rules>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>${sonar-maven-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>spring-boot-build</id>
+      <activation>
+        <property>
+          <name>release</name>
+          <value>!true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${project.parent.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>repackage</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <image>
+                <buildpacks>
+                  <buildpack>gcr.io/paketo-buildpacks/bellsoft-liberica:9.9.0-ea</buildpack>
+                  <buildpack>gcr.io/paketo-buildpacks/java-native-image</buildpack>
+                </buildpacks>
+              </image>
+              <mainClass>${start-class}</mainClass>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>deploy-central</id>
+      <activation>
+        <property>
+          <name>release</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+      </distributionManagement>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <!-- Prevent `gpg` from using pinentry programs -->
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>test-jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

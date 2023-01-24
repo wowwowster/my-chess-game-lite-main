@@ -1,0 +1,21 @@
+@mixin jhlite-q-link-light {
+  color: $jhlite-global-color-link-light;
+
+  &:hover {
+    color: $jhlite-global-color-link-light-hover;
+  }
+}
+
+@mixin jhlite-q-field {
+  box-sizing: border-box;
+  border: $jhlite-global-size-field-border solid $jhlite-global-color-fill-primary-darker;
+  border-radius: $jhlite-global-size-field-radius;
+  padding: $jhlite-global-size-field-padding;
+  line-height: $jhlite-global-size-field-line-height;
+  font-size: $jhlite-global-size-field-font-size;
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $jhlite-global-color-text-disabled;
+  }
+}

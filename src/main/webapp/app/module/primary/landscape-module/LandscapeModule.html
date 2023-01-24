@@ -1,0 +1,12 @@
+<div
+  class="jhlite-chip"
+  :class="moduleClass()"
+  :ref="el => landscapeElements.set(module.slugString(), el)"
+  :data-selector="`${module.slugString()}-module`"
+  @mouseover="emphasisizeModule()"
+  @mouseleave="deEmphasisizeModule()"
+  @click="clickedModule()"
+>
+  <div class="jhlite-chip--title" :class="moduleClass()">{{ module.slugString() }}</div>
+  <div class="jhlite-chip--description" :class="moduleClass()">{{ module.operation() }}</div>
+</div>
